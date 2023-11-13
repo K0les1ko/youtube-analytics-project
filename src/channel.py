@@ -6,6 +6,7 @@ class Channel:
     DEVELOPER_KEY = 'AIzaSyBgM_QMOxIgBaTz56iO5LSodb_L-vypyrk'
     YOUTUBE_API_SERVICE_NAME = 'youtube'
     YOUTUBE_API_VERSION = 'v3'
+    all = []
 
     def __init__(self, channel_id):
         self.channel_id = channel_id
@@ -55,3 +56,19 @@ class Channel:
                 json.dump(channel_data, file, indent=2)
                 return True
         return False
+
+    @staticmethod
+    def string_to_number(value: str) -> float:
+        """
+        Преобразует строку в число.
+
+        :param value: Строка, представляющая число.
+        :return: Преобразованное число.
+        """
+        try:
+            return int(float(value))
+        except ValueError:
+            return 0.0
+
+# Очищаем список all в начале метода
+Channel.all = []
