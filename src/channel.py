@@ -52,8 +52,8 @@ class Channel:
         }
 
         if self.data:
-            with open(filename, 'w') as file:
-                json.dump(channel_data, file, indent=2)
+            with open(filename, 'w', encoding='utf-8') as file:
+                json.dump(channel_data, file, indent=2, ensure_ascii=False)
                 return True
         return False
 
