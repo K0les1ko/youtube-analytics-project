@@ -1,5 +1,5 @@
 from src.video import Video
-from src.playlist_video import PLVideo
+from src.video import PLVideo
 
 if __name__ == '__main__':
 
