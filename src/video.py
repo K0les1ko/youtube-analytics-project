@@ -4,12 +4,17 @@ from datetime import timedelta
 class Video:
     def __init__(self, video_id):
         self.video_id = video_id
-        self.title = ""
-        self.video_url = ""
-        self.duration = timedelta()
-        self.views = 0
-        self.likes = 0
-        self._load_video_info()
+        self.title = None
+        self.video_url = None
+        self.duration = None
+        self.views = None
+        self.likes = None
+
+        try:
+            self._load_video_info()
+        except Exception as e:
+            # Обработка ошибки при загрузке данных о видео
+            print(f"Error loading video info: {str(e)}")
 
     def _load_video_info(self):
         api_key = "AIzaSyBgM_QMOxIgBaTz56iO5LSodb_L-vypyrk"
@@ -30,16 +35,15 @@ class Video:
             self.likes = int(statistics.get("likeCount", 0))
 
     def _parse_duration(self, duration_str):
-        # Преобразование строки продолжительности в timedelta
+
         minutes, seconds = map(int, duration_str[2:-1].split('M')[1].split('S'))
         return timedelta(minutes=minutes, seconds=seconds)
-
-
 
     def __repr__(self):
         return f"Video(id={self.video_id}, title={self.title}, views={self.views}, likes={self.likes})"
 
     def __str__(self):
         return f"{self.title} ({self.video_url}) - Views: {self.views}, Likes: {self.likes}"
+
 
 
